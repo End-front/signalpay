@@ -1,0 +1,93 @@
+body {
+  background-color: #18191a;
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+a {
+  color: #ffffff;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+a:not(.button):hover {
+  color: #FFBF94;
+}
+
+a:not(.button):active {
+  color: #FF6600;
+}
+
+.header {
+  background-color: rgba(24, 25, 26, 0.9);
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.header__top__logo .toggle {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.menu__list__link {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.menu__list__link.active {
+  color: #FF6600;
+}
+
+.header__bottom .nav__link {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  opacity: 0.4;
+}
+
+.header__bottom .nav__link:hover {
+  opacity: 0.9;
+}
+
+.header__bottom .nav__link.active {
+  opacity: 1;
+}
+
+.language__field:hover .language__field__text {
+  color: #FFBF94;
+}
+
+.language__field:hover rect, .language__field:hover path {
+  fill: #FFBF94;
+}
+
+.language__field:active .language__field__text {
+  color: #FF6600;
+}
+
+.language__field:active rect, .language__field:active path {
+  fill: #FF6600;
+}
+
+.language__field__text {
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.language__field__icon rect, .language__field__icon path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+@media (min-width: 950px) {
+  .main__section-3 {
+    color: #ffffff;
+  }
+}
+
+.mobile-menu__button rect {
+  fill: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}

@@ -1,0 +1,65 @@
+body.white-mode {
+  background-color: #ffffff;
+  color: #18191a;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.white-mode .header {
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.white-mode .header__top__logo .toggle {
+  fill: #5D3CB1;
+}
+
+.white-mode a:not(.button) {
+  color: #18191a;
+}
+
+.white-mode a:not(.button):hover {
+  color: #FFBF94;
+}
+
+.white-mode a:not(.button):active {
+  color: #FF6600;
+}
+
+.white-mode .menu__list__link {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.white-mode .menu__list__link.active {
+  color: #FF6600;
+}
+
+.white-mode .language__field:hover .language__field__text {
+  color: #FFBF94;
+}
+
+.white-mode .language__field:hover rect, .white-mode .language__field:hover path {
+  fill: #FFBF94;
+}
+
+.white-mode .language__field:active .language__field__text {
+  color: #FF6600;
+}
+
+.white-mode .language__field:active rect, .white-mode .language__field:active path {
+  fill: #FF6600;
+}
+
+.white-mode .language__field__text {
+  color: #18191a;
+}
+
+.white-mode .language__field__icon rect, .white-mode .language__field__icon path {
+  fill: #18191a;
+}
+
+.white-mode .mobile-menu__button rect {
+  fill: #18191a;
+}
