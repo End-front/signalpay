@@ -1233,6 +1233,7 @@ $(document).ready(function() {
   $('.settings__list__item:nth-child(2) a').click(function () {
     document.getElementById("language").checked == true ? document.getElementById("language").checked = false : document.getElementById("language").checked = true
   })
+  $('#section-3').parent().css('margin', "0")
 });
 
 
