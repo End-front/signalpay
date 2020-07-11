@@ -294,7 +294,7 @@ $(document).ready(function() {
   let scene5_0 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
     offset: (-headerHeight - 20 + PaddingScene5),
-    duration: (-headerHeight - 20 + PaddingScene5) + standartDuration * 7 + PauseBetweenScene * 5 + PaddingScene5 * 3 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
+    duration: (-headerHeight - 20 + PaddingScene5) + standartDuration * 8 + PauseBetweenScene * 5 + PaddingScene5 * 3 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
   })
   .setPin('#section-3')
   .triggerHook(0)
