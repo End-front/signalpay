@@ -1,7 +1,6 @@
 "use strict";
 
 $(document).ready(function() {
-  window.scrollTo(0, 0);
   let WindowWidht = $(window).outerWidth();
   if (WindowWidht < 1300) {
     $('.header__top .container').removeClass('d-none');
@@ -146,21 +145,30 @@ $(document).ready(function() {
   .setTween(timeline4)
   .addTo(controller);
 
-  let heightNavItem = [$('#nav-item-1').height()]
+  let heightNavItem = [
+    $('#nav-item-1').height(),
+    $('#nav-item-2').height(),
+  ]
   let heightText = [
     $("#text-2").height() + 24,
     $("#text-3").height(),
     $("#text-4").height(),
-    $("#text-5").height()
+    $("#text-5").height(),
+    $("#text-6").height(),
   ]
   let heightOrangeTitle = [
     $('#orange-title-2').height() + 5,
+    $('#orange-title-3').height() + 5,
   ];
   let heightNavSubItem = [
     $('#nav-subitem-1').height() + 5,
     $('#nav-subitem-2').height() + 5,
     $('#nav-subitem-3').height() + 5,
+    $('#nav-subitem-4').height() + 5,
   ];
+
+  let conditionalForHeaderNav = ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50 + $('.header .nav__item').eq(2).outerWidth() + 50 + $('.header .nav__item').eq(3).outerWidth() > $('.header__bottom .container').width()) ?
+   $('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50 + $('.header .nav__item').eq(2).outerWidth() + 50 + $('.header .nav__item').eq(3).outerWidth() - $('.header__bottom .container').width(): false;
 
   let timeline5 = new TimelineMax();
   let animtime5 = 1;
@@ -215,12 +223,11 @@ $(document).ready(function() {
           x: -100 + "vw",
         }, '0')
         .from('.window-num', animtime5, {
-          opacity: 0,
-          x: 100 + "vw",
+          x: 100 + "%",
         }, '0')
         .to('.window-num', animtime5, {
-          opacity: 1,
           x: -50 + "%",
+          opacity: 1,
         }, '0')
         .to("#nav-item-1", animtime5, {
           bottom: 'auto',
@@ -250,8 +257,10 @@ $(document).ready(function() {
           y: -120 + "%",
         }, '0')
         .from('.window-num', animtime5, {
-          opacity: 0,
           y: 120 + "%",
+        }, '0')
+        .to('.window-num', animtime5, {
+          opacity: 1,
         }, '0')
         .to("#nav-item-1", animtime5, {
           bottom: 'auto',
@@ -285,7 +294,7 @@ $(document).ready(function() {
   let scene5_0 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
     offset: (-headerHeight - 20 + PaddingScene5),
-    duration: standartDuration * 11 + PauseBetweenScene * 2 + ((PaddingScene5 + PaddingScene7) * 1.5) * 2,
+    duration: standartDuration * 20 + PauseBetweenScene * 4 + PaddingScene5 * 2 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
   })
   .setPin('#section-3')
   .triggerHook(0)
@@ -301,7 +310,7 @@ $(document).ready(function() {
   .addTo(controller);
 
   scene5.on('start', function () {
-    $('.header .nav__item:nth-child(1) a').toggleClass('active');
+    $('.header .nav__item:nth-child(1) a').toggleClass('active');    
   })
 
   let scene6 = new ScrollMagic.Scene({
@@ -315,22 +324,36 @@ $(document).ready(function() {
 
   let timeline7 = new TimelineMax();
   timeline7
-      .from('.window-next', animtime5, {
-        x: 150 + "%",
-        opacity: 0,
-      })
       .to(".window-num", animtime5, {
         x: -150 + "%",
         opacity: 0,
-      }, "0")
+      }, '1')
+      .from('.window-next', animtime5, {
+        x: 120 + "%",
+      }, '1')
       .to('.window-next', animtime5, {
-        x: -150 + "%",
-        opacity: 0,
+        opacity: 1,
       }, '1')
+      .to('.window-next', animtime5, {
+        x: -120 + "%",
+        opacity: 0,
+      }, '2')
       .from(".window-final", animtime5, {
-        x: 150 + "%",
-        opacity: 0,
+        x: 120 + "%",
+      }, '2')
+      .to(".window-final", animtime5, {
+        opacity: 1,
+      }, '2')
+
+  if ($(window).width() < 950) {
+    timeline7
+    .to('.window-next', animtime5, {
+        x: -50 + "%",
       }, '1')
+    .to(".window-final", animtime5, {
+        x: -50 + "%",
+      }, '2')
+  }
 
   let scene7_1 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
@@ -458,6 +481,12 @@ $(document).ready(function() {
         opacity: 0,
       }, "0")
                
+  if ($(window).width() < 950) {
+    timeline8_2
+    .to('#cart-block-2', animtime5, {
+        x: -50 + "%",
+      }, "0")
+  }
 
   let scene8_1 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
@@ -498,6 +527,15 @@ $(document).ready(function() {
   })
   .addTo(controller);
 
+  scene8_3.on('enter', function () {   
+    if (conditionalForHeaderNav) {
+      $('.header .nav__list').css({
+          "-webkit-transform" : 'translate(-0px, 0)',
+          "transform" : 'translate(-0px, 0)',
+        })
+    };
+  })
+
 
   let scene9_0 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
@@ -509,6 +547,28 @@ $(document).ready(function() {
     y: PaddingScene7 + PaddingScene5,
   })
   .addTo(controller);
+
+  scene9_0.on('start', function () {
+    $('.header .nav__item:nth-child(1) a').toggleClass('active');
+    $('.header .nav__item:nth-child(2) a').toggleClass('active');
+  })
+  scene9_0.on('enter', function () {
+    if (conditionalForHeaderNav) {
+      if ($('.header .nav__item').eq(0).outerWidth() + 50 < conditionalForHeaderNav) {
+        $('.header .nav__list').css({
+            "-webkit-transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50) + 'px, 0)',
+            "transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50) + 'px, 0)',
+          })
+      } 
+      else {
+
+        $('.header .nav__list').css({
+            "-webkit-transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+            "transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+          })
+      }
+    }; 
+  })
 
   let timeline9 = new TimelineMax();
   timeline9
@@ -540,8 +600,11 @@ $(document).ready(function() {
       opacity: 0,
     }, "0")
     .from('.adaptive', animtime5, {
-      x: -120 + "%",
+      x: 120 + "%",
       opacity: 0,
+    }, "0")
+    .to('.adaptive', animtime5, {
+      x: -50 + "%",
     }, "0")
   } else {
     timeline9
@@ -556,6 +619,10 @@ $(document).ready(function() {
     .from('.adaptive', animtime5, {
       y: 120 + "%",
       opacity: 0,
+      x: -50 + "%",
+    }, "0")
+    .to('.adaptive', animtime5, {
+      x: -50 + "%",
     }, "0")
   } 
 
@@ -726,8 +793,11 @@ $(document).ready(function() {
       .to('.adaptive__widnow__line .underline', animtime5, {
         marginTop: 0 + "em",
       }, '4')
-      .to('.adaptive__widnow__line input', animtime5, {
+      .to('.adaptive__widnow__line input:not(.en)', animtime5, {
         value: "1797,00 руб.",
+      }, '4')
+      .to('.adaptive__widnow__line input.en', animtime5, {
+        value: "$ 169,35",
       }, '4')
       .to('.adaptive__widnow__menu', animtime5, {
         opacity: 0,
@@ -752,6 +822,21 @@ $(document).ready(function() {
   })
   .addTo(controller);
 
+  scene9_4.on('enter', function () {
+    if (conditionalForHeaderNav) {
+      if ($('.header .nav__item').eq(0).outerWidth() + 50 < conditionalForHeaderNav) {
+        $('.header .nav__list').css({
+            "transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50) + 'px, 0)',
+          })
+      } 
+      else {
+        $('.header .nav__list').css({
+          "transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+          })
+      }
+    }; 
+  })
+
   let scene10_0 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
     offset: (-headerHeight - 20 + PaddingScene5) + standartDuration * 4 + PauseBetweenScene * 3 + PaddingScene5 * 1.5  + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
@@ -770,8 +855,10 @@ $(document).ready(function() {
     x: 0 + "%",
   }, "0")
   .from('.scene10', animtime5, {
-    opacity: 0,
     x: -100 + "%",
+  }, "0")
+  .to('.scene10', animtime5, {
+    opacity: 1,
   }, "0")
   .to('.adaptive', animtime5, {
     opacity: 0,
@@ -790,15 +877,17 @@ $(document).ready(function() {
       y: -400,
       opacity: 0,
     }, "0")
-   .from('#text-5', animtime5, {
-      y: 400,
-      opacity: 0,
-      top: heightNavItem[0] + 20 + heightNavSubItem[0] + heightNavSubItem[1] + heightNavSubItem[2] + 10,
-    }, "0")
    .to('#text-5', animtime5, {
       opacity: 1,
       top: heightNavItem[0] + 20 + heightNavSubItem[0] + heightNavSubItem[1] + heightNavSubItem[2] + 10,
     }, "0")
+
+   if ($(window).width() < 950) {
+    timeline10_1
+    .to('.scene10', animtime5, {
+       x: -50 + '%',
+    }, "0")
+  }
 
   let scene10_1 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
@@ -808,6 +897,27 @@ $(document).ready(function() {
   .triggerHook(0)
   .setTween(timeline10_1)
   .addTo(controller);
+
+  scene10_1.on('start', function () {
+    $('.header .nav__item:nth-child(2) a').toggleClass('active');
+    $('.header .nav__item:nth-child(3) a').toggleClass('active');
+  })
+  scene10_1.on('enter', function () {
+    if (conditionalForHeaderNav) {
+      if ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50 < conditionalForHeaderNav) {
+        $('.header .nav__list').css({
+            "transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50) + 'px, 0)',
+            "-webkit-transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50) + 'px, 0)',
+          })
+      } 
+      else {
+        $('.header .nav__list').css({
+          "transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+          "-webkit-transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+          })
+      }
+    }; 
+  })
 
   let timeline10_2 = new TimelineMax();
   timeline10_2
@@ -860,6 +970,23 @@ $(document).ready(function() {
   })
   .addTo(controller);
 
+  scene10_3.on('enter', function () {
+    if (conditionalForHeaderNav) {
+      if ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50 < conditionalForHeaderNav) {
+        $('.header .nav__list').css({
+            "transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50) + 'px, 0)',
+            "-webkit-transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50) + 'px, 0)',
+          })
+      } 
+      else {
+        $('.header .nav__list').css({
+          "transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+          "-webkit-transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+          })
+      }
+    }; 
+  })
+
   let scene11_0 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
     offset: (-headerHeight - 20 + PaddingScene5) + standartDuration * 5 + PauseBetweenScene * 4 + PaddingScene5 * 2 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
@@ -872,10 +999,69 @@ $(document).ready(function() {
   .addTo(controller);
 
   let timeline11_1 = new TimelineMax();
-  // timeline11_1
-  // .to('.scene10 .button__item-scene:nth-child(1)', animtime5, {
-  //   width: 0 + '%',
-  // }, "1")
+  timeline11_1
+  .to('#nav-subitem-1, #nav-subitem-2, #nav-subitem-3, #text-5', animtime5, {
+    y: -400,
+    opacity: 0,
+  }, "0")
+  .to('#nav-item-2, #arrow', animtime5, {
+    top: heightNavItem[0] + 20,
+  }, '0')
+  .to('#nav-item-1', animtime5, {
+    left: 0,
+  }, '0')
+  .to('#orange-title-3', animtime5, {
+    top: heightNavItem[0] + 20 + heightNavItem[1] + 30,
+    opacity: 1,
+  }, '0')
+  .to('#text-6', animtime5, {
+    top: heightNavItem[0] + 20 + heightNavItem[1] + 30 + heightOrangeTitle[1] + 20,
+    opacity: 1,
+  }, '0')
+  .from('#nav-subitem-4', animtime5, {
+    y: 400,
+  }, '0')
+  .to('#nav-subitem-4', animtime5, {
+    top: heightNavItem[0] + 20 + heightNavItem[1] + 30 + heightOrangeTitle[1] + 20 + heightText[5],
+    bottom: "auto",
+    opacity: 1,
+  }, '0')
+  .to('.window-num', animtime5, {
+      y: 100 + '%',
+  }, "0")
+  .to('.window-next, .window-final', animtime5, {
+      x: 100 + "%",
+  }, "0")
+  .to('.scene10', animtime5, {
+    y: -100 + "%",
+    opacity: 0,
+  }, "1")
+  .to('.window-num', animtime5, {
+    y: 0 + "%",
+    opacity: 1,
+  }, "1")
+  .to('.phone', animtime5, {
+    opacity: 0,
+  }, "1")
+  .to('.phone-3', animtime5, {
+    opacity: 0.5,
+  }, "1")
+
+  if ($(window).width() < 950) {
+    timeline11_1
+    .to('.window-num', animtime5, {
+      x: -50 + '%',
+     }, "0")
+    .to('#nav-item-2', animtime5, {
+      left: 35,
+    }, '0')
+  } else {
+    timeline11_1
+    .to('.window-num', animtime5, {
+      x: 0 + '%',
+     }, "0")
+
+  }
 
   let scene11_1 = new ScrollMagic.Scene({
     triggerElement: '#section-3',
@@ -885,6 +1071,168 @@ $(document).ready(function() {
   .triggerHook(0)
   .setTween(timeline11_1)
   .addTo(controller);
+
+  scene11_1.on('enter', function () {
+    if (conditionalForHeaderNav) {
+      if ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50 + $('.header .nav__item').eq(2).outerWidth() + 50 < conditionalForHeaderNav) {
+        $('.header .nav__list').css({
+            "transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50 + $('.header .nav__item').eq(2).outerWidth() + 50) + 'px, 0)',
+            "-webkit-transform" : 'translate(-' + ($('.header .nav__item').eq(0).outerWidth() + 50 + $('.header .nav__item').eq(1).outerWidth() + 50 + $('.header .nav__item').eq(2).outerWidth() + 50) + 'px, 0)',
+          })
+      } 
+      else {
+        $('.header .nav__list').css({
+          "transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+          "-webkit-transform" : 'translate(-' + conditionalForHeaderNav + 'px, 0)',
+          })
+      }
+    }; 
+  })
+
+  scene11_1.on('start', function () {
+    $('.header .nav__item:nth-child(3) a').toggleClass('active');
+    $('.header .nav__item:nth-child(4) a').toggleClass('active');
+  })
+
+  let timeline11_2 = new TimelineMax();
+  timeline11_2
+  .to('.window-num', animtime5, {
+      x: -120 + "%",
+      opacity: 0,
+  }, "0")
+  .to('.window-next', animtime5, {
+      x: -120 + "%",
+      opacity: 0,
+  }, "1")
+
+  if ($(window).width() < 950) {
+    timeline11_2
+    .to('.window-next', animtime5, {
+      x: -50 + '%',
+      opacity: 1,
+    }, "0")
+    .to('.window-final', animtime5, {
+      x: -50 + "%",
+      opacity: 1,
+    }, "1")
+  } else {
+    timeline11_2
+    .to('.window-next', animtime5, {
+      x: 0 + "%",
+      opacity: 1,
+    }, "0")
+    .to('.window-final', animtime5, {
+      x: 0 + "%",
+      opacity: 1,
+    }, "1")
+  }
+
+  let scene11_2 = new ScrollMagic.Scene({
+    triggerElement: '#section-3',
+    offset: (-headerHeight - 20 + PaddingScene5) + standartDuration * 6 + PauseBetweenScene * 4 + PaddingScene5 * 2 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
+    duration: standartDuration,
+  })
+  .triggerHook(0)
+  .setTween(timeline11_2)
+  .addTo(controller);
+
+  let scene11_3 = new ScrollMagic.Scene({
+    triggerElement: '#section-3',
+    offset: (-headerHeight - 20 + PaddingScene5) + standartDuration * 7 + PauseBetweenScene * 4 + PaddingScene5 * 2 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
+    duration: PaddingScene5 * 1.5,
+  })
+  .triggerHook(0)
+  .setTween('#section-3', animtime5, {
+    y: 0,
+  })
+  .addTo(controller);
+
+  let scene12_0 = new ScrollMagic.Scene({
+    triggerElement: '#section-3',
+    offset: (-headerHeight - 20 + PaddingScene5) + standartDuration * 7 + PauseBetweenScene * 5 + PaddingScene5 * 3 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
+    duration: PaddingScene5 * 1.5,
+  })
+  .triggerHook(0)
+  .setTween('#section-3', animtime5, {
+    y: PaddingScene5,
+  })
+  .addTo(controller);
+
+  let timeline12_1 = new TimelineMax();
+  timeline12_1
+  .to('.window-final, .phone-3', animtime5, {
+      x: -120 + "%",
+      opacity: 0,
+  }, "0")
+  .from('.last-screen', animtime5, {
+      x: 120 + "%",
+      opacity: 0,
+  }, "0")
+  .to('.last-screen', animtime5, {
+      opacity: 1,
+  }, "0")
+  .to('#orange-title-3, #text-6', animtime5, {
+      y: -400,
+      opacity: 0,
+  }, "0")
+  .to('#nav-subitem-4', animtime5, {
+      top: heightNavItem[0] + 20 + heightNavItem[1] + 20,
+  }, "0")
+  .to('#nav-subitem-4 .dot', animtime5, {
+      opacity: 1,
+  }, "0")
+  .to('#text-7', animtime5, {
+      opacity: 1,
+      top: heightNavItem[0] + 20 + heightNavItem[1] + 20 + heightNavSubItem[3],
+  }, "0")
+
+  if ($(window).width() < 950) {
+    timeline12_1
+     .to('.last-screen', animtime5, {
+      x: -50 + "%",
+  }, "0")
+  }
+
+  let scene12_1 = new ScrollMagic.Scene({
+    triggerElement: '#section-3',
+    offset: (-headerHeight - 20 + PaddingScene5) + standartDuration * 7 + PauseBetweenScene * 5 + PaddingScene5 * 3 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
+    duration: standartDuration,
+  })
+  .triggerHook(0)
+  .setTween(timeline12_1)
+  .addTo(controller);
+
+  $('.nav__item:nth-child(1) a').click(function (event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: $('#section-3').parent().offset().top + (-headerHeight + PaddingScene5),
+      behavior: "smooth"
+    });
+  })
+  $('.nav__item:nth-child(2) a').click(function (event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: $('#section-3').parent().offset().top + (-headerHeight - 20 + PaddingScene5) + standartDuration * 4 + PauseBetweenScene * 2 + PaddingScene5 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5),
+      behavior: "smooth"
+    });
+  })
+  $('.nav__item:nth-child(3) a').click(function (event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: $('#section-3').parent().offset().top + (-headerHeight - 20 + PaddingScene5) + standartDuration * 5 + PauseBetweenScene * 3 + PaddingScene5 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
+      behavior: "smooth"
+    });
+  })
+  $('.nav__item:nth-child(4) a').click(function (event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: $('#section-3').parent().offset().top + (-headerHeight - 20 + PaddingScene5) + standartDuration * 6 + PauseBetweenScene * 4 + PaddingScene5 * 2 * 1.5 + ((PaddingScene7 + PaddingScene5) * 1.5) * 2,
+      behavior: "smooth"
+    });
+  })
+  $('.settings__list__item:nth-child(2) a').click(function () {
+    document.getElementById("language").checked == true ? document.getElementById("language").checked = false : document.getElementById("language").checked = true
+  })
 });
 
 

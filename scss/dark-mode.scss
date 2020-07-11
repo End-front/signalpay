@@ -1,0 +1,83 @@
+$main-black: #18191a;
+$main-purple: #5D3CB1;
+$main-white: #ffffff;
+$main-gray: #868686;
+$main-orange: #FF6600;
+$main-orange-hover: #DC5800;
+$main-orange-active: #B94A00;
+$main-time: 0.3s;
+
+body {
+  background-color: $main-black;
+  color: $main-white;
+  transition: $main-time;
+}
+
+a {
+  color: $main-white;
+  transition: color $main-time;
+  &:not(.button):hover{
+    color: #FFBF94;
+  }
+  &:not(.button):active {
+    color: $main-orange;
+  }
+}
+
+.header {
+  background-color: rgba($main-black, 0.9);
+  transition: background-color $main-time;
+}
+.header__top__logo .toggle {
+  transition: $main-time;
+}
+.menu__list__link {
+  transition: $main-time;
+  &.active {
+  	color: $main-orange;
+  }
+}
+.header__bottom .nav__link{
+  transition: $main-time;
+  opacity: 0.4;
+  &:hover {
+  	opacity: 0.9;
+  }
+  &.active {
+  	opacity: 1;
+  }
+}
+.language__field {
+  &:hover {
+    .language__field__text {
+      color: #FFBF94;
+    }
+    rect, path{
+      fill: #FFBF94;
+    }
+  }
+  &:active {
+    .language__field__text {
+      color: $main-orange;
+    }
+    rect, path{
+      fill: $main-orange;
+    }
+  }
+  &__text {
+  	color: $main-white;
+  	transition: $main-time;
+  }
+  &__icon rect, &__icon path {
+  	transition: $main-time;
+  }
+}
+.main__section-3 {
+   @media (min-width: 950px) {
+   	color: $main-white;
+   }
+}
+.mobile-menu__button rect{
+	fill: $main-white;
+	transition: $main-time;
+}

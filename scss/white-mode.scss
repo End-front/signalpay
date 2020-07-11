@@ -1,0 +1,70 @@
+$main-black: #18191a;
+$main-purple: #5D3CB1;
+$main-white: #ffffff;
+$main-gray: #868686;
+$main-orange: #FF6600;
+$main-orange-hover: #DC5800;
+$main-orange-active: #B94A00;
+$main-time: 0.3s;
+
+$buffer: $main-black;
+$main-black: $main-white;
+$main-white: $buffer;
+
+
+body.white-mode {
+  background-color: $main-black;
+  color: $main-white;
+  transition: $main-time;
+}
+.white-mode{
+	.header {
+	  background-color: rgba($main-black, 0.9);
+	  transition: background-color $main-time;
+	}
+	.header__top__logo .toggle {
+		fill: $main-purple;
+	}
+	a:not(.button) {
+		color: $main-white;
+		&:not(.button, .not-link):hover {
+		   color: #FFBF94;
+		}
+		&:not(.button, .not-link):active {
+		   color: $main-orange;
+    	}
+	}
+	.menu__list__link {
+	  transition: $main-time;
+	  &.active {
+	  	color: $main-orange;
+	  }
+	}
+	.language__field {
+	  &:hover {
+	    .language__field__text {
+	      color: #FFBF94;
+	    }
+	    rect, path{
+	      fill: #FFBF94;
+	    }
+	  }
+	  &:active {
+	    .language__field__text {
+	      color: $main-orange;
+	    }
+	    rect, path{
+	      fill: $main-orange;
+	    }
+	  }
+	  &__text {
+	  	color: $main-white;
+	  }
+	  &__icon rect, &__icon path {
+	  	fill: $main-white;
+	  }
+	}
+	.mobile-menu__button rect{
+		fill: $main-white;
+	}
+}
